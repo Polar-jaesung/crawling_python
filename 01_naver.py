@@ -11,19 +11,26 @@ window_headers = {
 }
 
 sample_naver= requests.get(url, headers=window_headers)
-
 naver_html = sample_naver.text
 soup = BeautifulSoup(naver_html, "html.parser")
+items = soup.select(".api_ani_send")
 
-titles = soup.select(".api_txt_lines.total_tit")
-names = soup.select(".sub_txt.sub_name")
+rank_num=1
+for area in items:    
+    ad = area.select_one(".link_ad")
+    if ad: 
+        # print("광고입니다")
+        continue 
+        # continue사용하면 아래 코드는 실행x 위로 다시 돌아감
 
-for result in zip(names,titles):
-    print(type(result))
-    print(result[0].text)
-    print(result[1].text)
-    print(result[1]['href'])
+    print(f"<<{rank_num}>>")
+    names = area.select_one(".sub_txt.sub_name")
+    titles = area.select_one(".api_txt_lines.total_tit")    
+    print(names.text)
+    print(titles.text)
+    print(titles['href'])
     print()
 
-# api_txt_lines total_tit _cross_trigger
+    rank_num+= 1
+
 
