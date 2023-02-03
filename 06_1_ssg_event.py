@@ -21,8 +21,10 @@ for event in all_events:
         print(f"https://www.ssg.com{link}")    
     contents = event.select_one(".eo_in")
     each_content = contents.find_all(string=True)
+    # 문자가 여러 태그에 나뉘어 있을때 한번에 긁어오려고 string= True 사용함 
 
     for only_text in each_content:
-        if only_text != "\n":  #/n이 아니다! 슬래쉬 구분 실수하지 않도록
+        if only_text != "\n":  
+            '''/n이 아니다! 슬래쉬 구분 실수하지 않도록'''
             print(only_text)
     print()
