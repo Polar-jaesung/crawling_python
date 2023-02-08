@@ -45,9 +45,10 @@ for i in range(5):
     driver.find_element(By.TAG_NAME,"body").send_keys(Keys.END)
     time.sleep(1)
 
-naver_html = driver.page_source
+#page_source를 지정하는건 목표로한 페이지까지 전부 도달한 시점이어야 함
+html = driver.page_source
 
-soup = BeautifulSoup(naver_html, "html.parser")
+soup = BeautifulSoup(html, "html.parser")
 items = soup.select(".api_ani_send")
 
 rank_num=1

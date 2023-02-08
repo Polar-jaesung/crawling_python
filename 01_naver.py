@@ -12,6 +12,7 @@ window_headers = {
 
 sample_naver= requests.get(url, headers=window_headers)
 naver_html = sample_naver.text
+
 soup = BeautifulSoup(naver_html, "html.parser")
 items = soup.select(".api_ani_send")
 
